@@ -1,19 +1,26 @@
 import { nanoid } from 'nanoid';
 
+export const setDefaultContacts = defaultContacts => {
+  return {
+    type: 'contacts/setDefaultContacts',
+    payload: defaultContacts,
+  };
+}
+
 export const addContact = ({name, number}) => {
   return {
-    type: 'tasks/addContact',
+    type: 'contacts/addContact',
     payload: {
       id: nanoid(),
       name,
       number,
     },
   };
-};
+}
 
 export const removeContact = contactID => {
   return {
-    type: 'tasks/removeContact',
+    type: 'contacts/removeContact',
     payload: contactID,
   };
 };

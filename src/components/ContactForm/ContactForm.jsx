@@ -1,39 +1,39 @@
-import { useState } from "react";
-import { nanoid } from "nanoid";
-import PropTypes from "prop-types";
+import { useSelector, useDispatch } from 'react-redux';
+import { Notify } from 'notiflix';
+
+import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/actions';
 import styles from '../App.module.css';
 
-export function ContactForm({ addContact }) {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  
-  function inputChange(e) {
-    const { name, value } = e.target;
-    if (name === 'name') {
-      setName(value);
-      return;
-    }
-    setNumber(value);
-  }
+export function ContactForm() {
+  const dispatch = useDispatch();
+  const contacts  = useSelector(getContacts);
 
   function submitClick(e) {
     e.preventDefault();
-    const newContact = { id: nanoid(), name, number }
+    const { name, number } = e.target.elements;
+    const newContact = {name: name.value, number: number.value };
 
-    addContact(newContact);
-    setName('');
-    setNumber('');
+    const isNameExist = contacts.some(({ name }) =>
+      name.toLocaleLowerCase() === newContact.name.toLocaleLowerCase()
+    );
+
+    if (isNameExist) {
+      Notify.failure(`${newContact.name} is already in your contacts.🧐`);
+      return;
+    }
+
+    dispatch(addContact(newContact));
+    Notify.success(`${newContact.name} has been added`);
+    e.target.reset();
   }
 
-  
   return (
     <form onSubmit={submitClick}>
         
       <label>
         Name
         <input className={styles.input}
-          onChange={inputChange}
-          value={name}
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -45,8 +45,6 @@ export function ContactForm({ addContact }) {
       <label>
         Number
         <input className={styles.input}
-          onChange={inputChange}
-          value={number}
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -59,7 +57,3 @@ export function ContactForm({ addContact }) {
     </form>
   )
 }
-
-ContactForm.propTypes = {
-  addContact: PropTypes.func.isRequired,
-};
