@@ -25,7 +25,7 @@ export function App() {
     setStatus('pending');
     const isContactsEmpty = contacts.length === 0;
 
-    if (isContactsEmpty) { 
+    if (isContactsEmpty) {
       setStatus('rejected');
       dispatch(setFilter(''));
     } else {

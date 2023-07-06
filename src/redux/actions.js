@@ -27,7 +27,7 @@ export const removeContact = contactID => {
 
 export const setFilter = value => {
   return {
-    type: 'filters/setFilter',
+    type: 'filter/setFilter',
     payload: value,
   };
 };

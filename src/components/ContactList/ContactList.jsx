@@ -7,7 +7,7 @@ import ContactItem from './ContactItem';
 export default function ContactList() {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter)
-
+  console.log(filter);
   function filterContacts() {
     const lowerCaseFilter = filter.toLocaleLowerCase();
     if (filter) {
@@ -23,7 +23,7 @@ export default function ContactList() {
   }
   
   const filteredContacts = filterContacts();
-
+console.log('hello');
   return (
     <ul>
       {filteredContacts.map(contact => (
