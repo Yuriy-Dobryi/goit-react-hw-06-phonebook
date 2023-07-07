@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getContacts } from 'redux/selectors';
-import { setDefaultContacts, setFilter } from 'redux/actions';
-import { DEFAULT_CONTACTS, CONTACTS_KEY } from 'redux/constants';
+import { setFilter } from 'redux/filterSlice';
+import { setDefaultContacts } from "redux/contactsSlice";
+import { DEFAULT_CONTACTS } from 'redux/constants';
 
 import { ContactForm } from "./ContactForm/ContactForm";
 import { Filter } from "./Filter/Filter";
@@ -14,14 +15,8 @@ export function App() {
   const [status, setStatus] = useState('idle');
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
-
+  console.log(contacts);
   useEffect(() => { 
-    const localContacts = JSON.parse(localStorage.getItem(CONTACTS_KEY));
-    dispatch(setDefaultContacts(localContacts ? [...localContacts] : []));
-  }, [dispatch]);
-
-  useEffect(() => { 
-    localStorage.setItem(CONTACTS_KEY, JSON.stringify([...contacts]));
     setStatus('pending');
     const isContactsEmpty = contacts.length === 0;
 

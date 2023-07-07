@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Notify } from 'notiflix';
 
 import { getContacts } from 'redux/selectors';
-import { addContact } from 'redux/actions';
+import { addContact } from 'redux/contactsSlice';
 import styles from '../App.module.css';
 
 export function ContactForm() {

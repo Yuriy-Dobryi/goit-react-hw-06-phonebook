@@ -3,7 +3,7 @@ import { Notify } from 'notiflix';
 import PropTypes from 'prop-types';
 
 import { getContacts } from 'redux/selectors';
-import { removeContact } from 'redux/actions';
+import { removeContact } from 'redux/contactsSlice';
 import styles from './ContactList.module.css';
 
 export default function ContactItem({ contact: { id, name, number } }) {

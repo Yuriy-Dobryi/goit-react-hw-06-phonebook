@@ -8,5 +8,3 @@ export const DEFAULT_CONTACTS = Object.freeze([
   { id: nanoid(), name: 'Annie Copeland', number: '227-91-26' },
   { id: nanoid(), name: 'Jack Shepart', number: '345-53-81' },
 ]);
-
-export const CONTACTS_KEY = 'contacts';
