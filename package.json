@@ -4,7 +4,6 @@
   "private": true,
   "homepage": "https://Yuriy-Dobryi.github.io/goit-react-hw-06-phonebook/",
   "dependencies": {
-    "@redux-devtools/extension": "^3.2.5",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
@@ -15,7 +14,6 @@
     "react-dom": "^18.1.0",
     "react-redux": "^8.1.1",
     "react-scripts": "5.0.1",
-    "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "web-vitals": "^2.1.3"
   },
