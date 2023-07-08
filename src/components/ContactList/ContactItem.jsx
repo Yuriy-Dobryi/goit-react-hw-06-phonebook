@@ -9,7 +9,7 @@ import styles from './ContactList.module.css';
 export default function ContactItem({ contact: { id, name, number } }) {
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
-
+  
   function removeContactHandle(id, name) {
     Notify.success(`${name} has been removed`);
     if (contacts.length - 1 === 0) {

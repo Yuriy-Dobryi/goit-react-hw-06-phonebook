@@ -15,7 +15,7 @@ export function App() {
   const [status, setStatus] = useState('idle');
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
-  console.log(contacts);
+  
   useEffect(() => { 
     setStatus('pending');
     const isContactsEmpty = contacts.length === 0;

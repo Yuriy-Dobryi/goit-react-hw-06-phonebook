@@ -7,22 +7,20 @@ import styles from '../App.module.css';
 
 export function ContactForm() {
   const dispatch = useDispatch();
-  const contacts  = useSelector(getContacts);
+  const contacts = useSelector(getContacts);
 
   function submitClick(e) {
     e.preventDefault();
     const { name, number } = e.target.elements;
-    const newContact = {name: name.value, number: number.value };
+    const newContact = { name: name.value, number: number.value };
 
-    const isNameExist = contacts.some(({ name }) =>
-      name.toLocaleLowerCase() === newContact.name.toLocaleLowerCase()
+    const isNameExist = contacts.some(contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
     );
-
+    
     if (isNameExist) {
       Notify.failure(`${newContact.name} is already in your contacts.🧐`);
       return;
     }
-
     dispatch(addContact(newContact));
     Notify.success(`${newContact.name} has been added`);
     e.target.reset();
